@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+	border: 3px #ccc;
+}
+
+input[type=text], input[type=password]{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+
+button {
+	background-color: #04AA6D;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	border-radius: 3px;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+.cancelbtn {
+	width: auto;
+	padding: 10px 18px;
+	background-color: #f44336;
+}
+
+.imgcontainer {
+	text-align: center;
+	margin: 24px 0 12px 0;
+}
+
+img.avatar {
+	width: 40%;
+	max-width: 300px;
+	border-radius: 50%;
+}
+
+.container {
+	padding: 16px;
+}
+
+span.psw {
+	float: right;
+	padding-top: 16px;
+}
+
+.fieldError {
+	color: red;
+}
+</style>
+</head>
+
+
+
+<body>
+<div layout:fragment="content">
+	<form action="#" th:action="@{/procedure/addNew}" th:object="${procedureModel}" method="post">
+
+		<div class="container">
+			<!-- Procedure Name -->
+			<label for="procedureName"><b>Name of Procedure</b></label>
+			<input type="text" th:field="*{procedureName}" placeholder="Enter The Name of The Procedure" name="procedureName">
+			<div class="fieldError">
+				<p th:if="${#fields.hasErrors('procedureName')}" th:errors="*{procedureName}">Procedure Name Error</p>
+			</div>
+			
+			<!-- Risk Factor -->
+			<label for="riskFactor"><b>Risk Factor (1 - 10)</b></label>
+			<input type="text" th:field="*{riskFactor}" placeholder="Enter The Risk Factor" name="riskFactor">
+			<div class="fieldError">
+				<p th:if="${#fields.hasErrors('riskFactor')}" th:errors="*{riskFactor}">Risk Factor Error</p>
+			</div>
+			
+			<!-- Specialty Area -->
+			<label for="specialtyArea"><b>The Area of Specialty</b></label>
+			<input type="text" th:field="*{specialtyArea}" placeholder="Enter Area of Specialty" name="specialtyArea">
+			<div class="fieldError">
+				<p th:if="${#fields.hasErrors('specialtyArea')}" th:errors="*{specialtyArea}">Specialty Area Error</p>
+			</div>
+			
+			<!-- Description -->
+			<label for="description"><b>Description of Procedure</b></label>
+			<input type="text" th:field="*{description}" placeholder="Enter The Description of The Procedure" name="description">
+			<div class="fieldError">
+				<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
+			</div>
+			
+			<!-- Price -->
+			<label for="price"><b>Price of Procedure</b></label>
+			<input type="price" th:field="*{price}" placeholder="Enter The Price of The Procedure" name="price">
+			<div class="fieldError">
+				<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+			</div>
+			
+			<!-- Photo -->
+			<label for="photo"><b>Photo of Procedure</b></label>
+			<input type="photo" th:field="*{photo}" placeholder="Enter The Image of The Procedure" name="photo">
+			<div class="fieldError">
+				<p th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}">Price Error</p>
+			</div>
+			
+			<button type="submit" value="add">Create Procedure</button>
+		</div>
+		
+		<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+		<div th:each="err : ${#fields.errors('*')}">
+			<span th:text="${err}" class="fieldError"></span>
+		</div>
+	</form>
+</div>
+</body>
+</html>

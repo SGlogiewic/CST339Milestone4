@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    font-family: Arial;
+}
+
+h2 {
+    color: blue;
+}
+
+p {
+    font-style: italic;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 2px;
+}
+</style>
+</head>
+
+
+
+<body>
+    <div layout:fragment="content" class="container-xl">
+        <h1 th:text="${title}"></h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Procedure Name</th>
+                <th>Risk Factor</th>
+                <th>Specialty Area</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Photo</th>
+            </tr>
+            <tr th:each="procedures : ${procedure}">
+                <td th:text="${procedures.id}"></td>
+                <td th:text="${procedures.procedureName}"></td>
+                <td th:text="${procedures.riskFactor}"></td>
+                <td th:text="${procedures.specialtyArea}"></td>
+                <td th:text="${procedures.description}"></td>
+                <td th:text="${procedures.price}"></td>
+                <td th:text="${procedures.photo}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
